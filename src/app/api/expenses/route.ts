@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     const filter: Record<string, unknown> = {};
     if (category && category !== 'all') filter.category = category;
 
-    const sortOrder = sort === 'date_desc' ? { date: -1 } : { date: -1 }; // always newest first
+    const sortOrder = sort === 'date_asc' ? { date: 1 } : { date: -1 };
 
     const expenses = await Expense.find(filter)
       .sort(sortOrder as any)
