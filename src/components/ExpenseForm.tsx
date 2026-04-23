@@ -36,6 +36,9 @@ export function ExpenseForm({ onSuccess }: { onSuccess: () => void }) {
       return setFormError(`Description cannot exceed ${DESCRIPTION_MAX} characters`);
     }
     if (!fields.date) return setFormError('Date is required');
+    if (fields.date > new Date().toISOString().split('T')[0]) {
+      return setFormError('Future dates are not allowed');
+    }
 
     setSubmitting(true);
     try {
@@ -99,6 +102,7 @@ export function ExpenseForm({ onSuccess }: { onSuccess: () => void }) {
         <input
           type="date"
           value={fields.date}
+          max= {new Date().toISOString().split('T')[0]}
           onChange={e => setFields(f => ({ ...f, date: e.target.value }))}
           className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
