@@ -7,3 +7,9 @@ export interface ExpenseDTO {
   date: string;             // ISO string
   createdAt: string;
 }
+export interface CategorySummary {
+  category:     string;
+  totalPaise:   number;
+  totalDisplay: string;
+  count:        number;
+}
